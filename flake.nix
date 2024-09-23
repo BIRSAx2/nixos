@@ -12,6 +12,10 @@
       # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -45,6 +49,13 @@
 
               # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
             }
+            (
+              { pkgs, ... }:
+              {
+                nixpkgs.overlays = [ rust-overlay.overlays.default ];
+                environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
+              }
+            )
           ];
         };
       };

@@ -8,6 +8,6 @@
     anki
     pandoc
     typst
-    texliveFull
+    texlive.combined.scheme-full
   ];
 }
