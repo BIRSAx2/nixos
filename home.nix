@@ -48,11 +48,31 @@
   programs.starship = {
     enable = true;
     # custom settings
+    # settings = {
+    #   add_newline = false;
+    #   aws.disabled = true;
+    #   gcloud.disabled = true;
+    #   line_break.disabled = true;
+    # };
     settings = {
       add_newline = false;
       aws.disabled = true;
       gcloud.disabled = true;
       line_break.disabled = true;
+
+      # Add shell module configuration
+      shell = {
+        disabled = false;
+        format = "$indicator";
+        bash_indicator = "󱆃";
+        fish_indicator = "󰈺";
+        zsh_indicator = "";
+        powershell_indicator = "";
+        unknown_indicator = "󰼇";
+      };
+
+      # Ensure the shell module appears in your prompt
+      format = "$shell$all";
     };
   };
 
@@ -125,6 +145,7 @@
     enable = true;
     font = {
       name = "Fira Code";
+      size = 10;
     };
     theme = "Dracula";
     settings = {

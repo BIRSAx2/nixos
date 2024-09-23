@@ -1,4 +1,18 @@
 { pkgs, pkgs-unstable, ... }:
+let
+  copilotLinkScript = pkgs.writeShellScript "copilot-link.sh" ''
+    #!/usr/bin/env bash
+    for ide in /home/*/.local/share/JetBrains/*; do
+      basename=$(basename "$ide")
+      if [[ $basename =~ .*[0-9]{4}\.[0-9]{1,2}$ ]]; then
+        if [ -f "$ide/github-copilot-intellij/copilot-agent/native/linux-x64/copilot-language-server" ]; then
+          echo "Linking GitHub Copilot agent for $ide"
+          ln -fs /run/current-system/sw/bin/copilot-agent "$ide/github-copilot-intellij/copilot-agent/native/linux-x64/copilot-language-server"
+        fi
+      fi
+    done
+  '';
+in
 {
   environment.systemPackages = with pkgs-unstable; [
     vscode
@@ -11,12 +25,15 @@
     jetbrains.clion
 
     # Patch for Copilot on Jetbrains
-    (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.datagrip [ "github-copilot" ])
-    (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.idea-ultimate [ "github-copilot" ])
-    (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.pycharm-professional [ "github-copilot" ])
-    (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.rust-rover [ "github-copilot" ])
-    (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.webstorm [ "github-copilot" ])
-    (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.clion [ "github-copilot" ])
-    (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.phpstorm [ "github-copilot" ])
+    github-copilot-intellij-agent
   ];
+  systemd.services.copilot-agent-link = {
+    description = "Link GitHub Copilot agent for all JetBrains IDEs";
+    after = [ "default.target" ];
+    wantedBy = [ "default.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${copilotLinkScript}";
+    };
+  };
 }
