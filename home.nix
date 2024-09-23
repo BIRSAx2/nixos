@@ -45,36 +45,7 @@
   ];
 
   # starship - an customizable prompt for any shell
-  programs.starship = {
-    enable = true;
-    # custom settings
-    # settings = {
-    #   add_newline = false;
-    #   aws.disabled = true;
-    #   gcloud.disabled = true;
-    #   line_break.disabled = true;
-    # };
-    settings = {
-      add_newline = false;
-      aws.disabled = true;
-      gcloud.disabled = true;
-      line_break.disabled = true;
-
-      # Add shell module configuration
-      shell = {
-        disabled = false;
-        format = "$indicator";
-        bash_indicator = "󱆃";
-        fish_indicator = "󰈺";
-        zsh_indicator = "";
-        powershell_indicator = "";
-        unknown_indicator = "󰼇";
-      };
-
-      # Ensure the shell module appears in your prompt
-      format = "$shell$all";
-    };
-  };
+  programs.starship = import ./config/starship.nix;
 
   programs.bash = {
     enable = true;
@@ -83,13 +54,6 @@
     bashrcExtra = ''
       export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
     '';
-
-    # set some aliases, feel free to add more or remove some
-    # shellAliases = {
-    #   k = "kubectl";
-    #   urldecode = "python3 -c 'import sys, urllib.parse as ul; print(ul.unquote_plus(sys.stdin.read()))'";
-    #   urlencode = "python3 -c 'import sys, urllib.parse as ul; print(ul.quote_plus(sys.stdin.read()))'";
-    # };
   };
 
   programs.zellij = {
@@ -120,32 +84,13 @@
     ];
   };
 
-  programs.helix = {
-    enable = true;
-    defaultEditor = true;
-    settings = {
-      theme = "dracula";
-    };
-    languages = {
-      language = [
-        {
-          name = "nix";
-          auto-format = true;
-          file-types = [ "nix" ];
-          comment-token = "#";
-          formatter = {
-            command = "nixfmt";
-          };
-        }
-      ];
-    };
-  };
+  programs.helix = import ./config/helix.nix;
 
   programs.kitty = {
     enable = true;
     font = {
-      name = "Fira Code";
-      size = 10;
+      name = "JetBrainsMono Nerd Font";
+      size = 12;
     };
     theme = "Dracula";
     settings = {
