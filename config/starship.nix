@@ -1,75 +1,239 @@
 {
   enable = true;
   settings = {
-    add_newline = false;
-    gcloud.disabled = true;
-    line_break.disabled = true;
 
-    # Add shell module configuration
-    shell = {
-      disabled = false;
-      format = "$indicator";
-      bash_indicator = "󱆃 ";
-      fish_indicator = "󰈺 ";
-      zsh_indicator = " ";
-      powershell_indicator = " ";
-      unknown_indicator = "󰼇 ";
-    };
+
+
 
     battery = {
       full_symbol = "🔋";
       charging_symbol = "🔌";
-      discharging_symbol = "⚡";
+      discharging_symbol = "💀";
 
       display = [
-        {
-          threshold = 10;
-          style = "bold red";
-        }
-        {
-          threshold = 25;
-          style = "bold orange";
-        }
-        {
-          threshold = 50;
-          style = "bold yellow";
-        }
-        {
-          threshold = 100;
-          style = "bold green";
-        }
+      {
+        threshold = 30;
+        style = "bold red";
+      }
       ];
     };
-    cmd_duration = {
-      min_time = 10000; # Show command duration over 10,000 milliseconds (=10 sec)
-      format = " took [$duration]($style)";
+
+
+
+
+
+
+    # Just some icons for languages and OSes
+    aws = {
+      symbol = "  ";
+    };
+
+    buf = {
+      symbol = " ";
+    };
+
+    c = {
+      symbol = " ";
+    };
+
+    conda = {
+      symbol = " ";
+    };
+
+    crystal = {
+      symbol = " ";
+    };
+
+    dart = {
+      symbol = " ";
     };
 
     directory = {
-      truncation_length = 5;
-      format = "[$path]($style)[$lock_symbol]($lock_style) ";
-      style = "bold #f57800";
-      read_only = "🔒";
-      read_only_style = "bold white";
+
+      read_only = " 󰌾";
+    };
+
+    docker_context = {
+      symbol = " ";
+    };
+
+    elixir = {
+      symbol = " ";
+    };
+
+    elm = {
+      symbol = " ";
+    };
+
+    fennel = {
+      symbol = " ";
+    };
+
+    fossil_branch = {
+      symbol = " ";
     };
 
     git_branch = {
-      format = " [$symbol$branch]($style) ";
-      symbol = "🍣 ";
-      style = "bold yellow";
+      symbol = " ";
     };
 
-    git_commit = {
-      commit_hash_length = 8;
-      style = "bold white";
+    golang = {
+      symbol = " ";
     };
 
-    character = {
-      error_symbol = "[ $shell](bold #ff0000)";
-      success_symbol = "[ $shell](bold #ea00d9)";
+    guix_shell = {
+      symbol = " ";
     };
-    # Ensure the shell module appears in your prompt
-    format = "($battery)$all";
 
+    haskell = {
+      symbol = " ";
+    };
+
+    haxe = {
+      symbol = " ";
+    };
+
+    hg_branch = {
+      symbol = " ";
+    };
+
+    hostname = {
+      ssh_symbol = " ";
+
+    };
+
+    java = {
+      symbol = " ";
+    };
+
+    julia = {
+      symbol = " ";
+    };
+
+    kotlin = {
+      symbol = " ";
+    };
+
+    lua = {
+      symbol = " ";
+    };
+
+    memory_usage = {
+      symbol = "󰍛 ";
+    };
+
+    meson = {
+      symbol = "󰔷 ";
+    };
+
+    nim = {
+      symbol = "󰆥 ";
+    };
+
+    nix_shell = {
+      symbol = " ";
+    };
+
+    nodejs = {
+      symbol = " ";
+    };
+
+    ocaml = {
+      symbol = " ";
+    };
+
+    os = {
+      symbols = {
+
+        Alpaquita = " ";
+        Alpine = " ";
+        AlmaLinux = " ";
+        Amazon = " ";
+        Android = " ";
+        Arch = " ";
+        Artix = " ";
+        CentOS = " ";
+        Debian = " ";
+        DragonFly = " ";
+        Emscripten = " ";
+        EndeavourOS = " ";
+        Fedora = " ";
+        FreeBSD = " ";
+        Garuda = "󰛓 ";
+        Gentoo = " ";
+        HardenedBSD = "󰞌 ";
+        Illumos = "󰈸 ";
+        Kali = " ";
+        Linux = " ";
+        Mabox = " ";
+        Macos = " ";
+        Manjaro = " ";
+        Mariner = " ";
+        MidnightBSD = " ";
+        Mint = " ";
+        NetBSD = " ";
+        NixOS = " ";
+        OpenBSD = "󰈺 ";
+        openSUSE = " ";
+        OracleLinux = "󰌷 ";
+        Pop = " ";
+        Raspbian = " ";
+        Redhat = " ";
+        RedHatEnterprise = " ";
+        RockyLinux = " ";
+        Redox = "󰀘 ";
+        Solus = "󰠳 ";
+        SUSE = " ";
+        Ubuntu = " ";
+        Unknown = " ";
+        Void = " ";
+        Windows = "󰍲 ";
+
+      };
+    };
+
+    package = {
+      symbol = "󰏗 ";
+    };
+
+    perl = {
+      symbol = " ";
+    };
+
+    php = {
+      symbol = " ";
+    };
+
+    pijul_channel = {
+      symbol = " ";
+    };
+
+    python = {
+      symbol = " ";
+    };
+
+    rlang = {
+      symbol = "󰟔 ";
+    };
+
+    ruby = {
+      symbol = " ";
+    };
+
+    rust = {
+      symbol = "󱘗 ";
+    };
+
+    scala = {
+      symbol = " ";
+    };
+
+    swift = {
+      symbol = " ";
+    };
+
+    zig = {
+      symbol = " ";
+    };
   };
 }

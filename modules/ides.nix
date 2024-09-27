@@ -16,24 +16,24 @@ in
 {
   environment.systemPackages = with pkgs-unstable; [
     vscode
-    jetbrains.datagrip
-    jetbrains.idea-ultimate
-    jetbrains.pycharm-professional
-    jetbrains.phpstorm
-    jetbrains.rust-rover
-    jetbrains.webstorm
-    jetbrains.clion
+    # jetbrains.datagrip
+    # jetbrains.idea-ultimate
+    # jetbrains.pycharm-professional
+    # jetbrains.phpstorm
+    # jetbrains.rust-rover
+    # jetbrains.webstorm
+    # jetbrains.clion
 
     # Patch for Copilot on Jetbrains
     github-copilot-intellij-agent
   ];
-  systemd.services.copilot-agent-link = {
-    description = "Link GitHub Copilot agent for all JetBrains IDEs";
-    after = [ "default.target" ];
-    wantedBy = [ "default.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${copilotLinkScript}";
-    };
-  };
+  # systemd.services.copilot-agent-link = {
+  #   description = "Link GitHub Copilot agent for all JetBrains IDEs";
+  #   after = [ "default.target" ];
+  #   wantedBy = [ "default.target" ];
+  #   serviceConfig = {
+  #     Type = "oneshot";
+  #     ExecStart = "${copilotLinkScript}";
+  #   };
+  # };
 }

@@ -27,7 +27,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.plymouth.enable = true;
+  # boot.plymouth.enable = true;
   boot.initrd.luks.devices."luks-330722c2-6470-4c3d-90ba-716a751a6dbb".device = "/dev/disk/by-uuid/330722c2-6470-4c3d-90ba-716a751a6dbb";
 
   networking.hostName = "ThinkPad"; # Define your hostname.
@@ -44,21 +44,13 @@
   # Set your time zone.
   time.timeZone = "Europe/Rome";
 
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "it_IT.UTF-8";
-    LC_MEASUREMENT = "it_IT.UTF-8";
-    LC_MONETARY = "it_IT.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "it_IT.UTF-8";
-    LC_TELEPHONE = "it_IT.UTF-8";
-    LC_TIME = "en_US.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    supportedLocales = [
+      "en_US.UTF-8/UTF-8"
+      "it_IT.UTF-8/UTF-8"
+    ];
   };
-
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -129,7 +121,9 @@
     wget
     curl
     fprintd
-    nixos-bgrt-plymouth
+    glibcLocales
+    glibc
+    #nixos-bgrt-plymouth
   ];
 
   # clean up
@@ -148,6 +142,16 @@
   # Fingerprint support
   services.fprintd.enable = true;
   services.flatpak.enable = true;
+  services.gnome.gnome-keyring.enable = true;
+
+  # Automatic garbage collection
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
