@@ -26,7 +26,10 @@ let
 
   # Function to help map attrs for symlinking home.file, xdg.configFile
   # e.g. from { ".hgrc" = ./hgrc; } to { ".hgrc".source = ./hgrc; }
-  toSource = configDirName: dotfilesPath: { source = dotfilesPath;  force = true; };
+  toSource = configDirName: dotfilesPath: {
+    source = dotfilesPath;
+    force = true;
+  };
 in
 
 {
@@ -76,7 +79,6 @@ in
   };
   home.file.".config/starship.toml".force = true;
   home.file.".config/starship.toml".source = ./config/starship.toml;
-
 
   programs.bash = {
     enable = true;
